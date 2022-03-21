@@ -3,9 +3,9 @@ addpath('iniconfig');
 
 %% read baseline parameters for config file
 cfg = spotGenerationParams;
-cfg.buidFromFile('baselineParams3D.ini');
+cfg.buidFromFile('pairs3D.ini');
 
-% build list of conditions into a table
+% build list of conditions 
 dist = [0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4];
 bgStd = [1,2,4];
 I = 300;
@@ -33,6 +33,7 @@ for i1 = 1:numel(dist)
                     cfg.set('bgStd',bgStd(i2));
                     cfg.set('brightness',[I(i3),0]);
                     cfg.set('psf',[sxy(i4), sz(i5)]);
+                    cfg.set('outFolder',['out/',fName]);
                     
                     % save parameters to config file
                     cfg.saveConfigAsIni([fName,'.ini']);
